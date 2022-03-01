@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware', 
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'homes.urls'
@@ -111,13 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -162,12 +164,25 @@ CORS_ALLOW_HEADERS = (
 ALGORITHM = ALGORITHM
 
 #Redis
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+
+#LocMemCache
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache' 
+
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache', 
+    } 
 }
+
+CACHE_MIDDLEWARE_ALIAS = 'default' # which cache alias to use 
+CACHE_MIDDLEWARE_SECONDS = 600 # number of seconds to cache a page for (TTL) 
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
