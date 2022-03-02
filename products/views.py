@@ -1,4 +1,4 @@
-import json, time
+import time
 
 from django.http.response import JsonResponse
 from django.views         import View
