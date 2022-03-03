@@ -186,3 +186,21 @@ CACHES = {
 CACHE_MIDDLEWARE_ALIAS = 'default' # which cache alias to use 
 CACHE_MIDDLEWARE_SECONDS = 600 # number of seconds to cache a page for (TTL) 
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
+LOGGING = {
+    'disable_existing_loggers': False,
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
