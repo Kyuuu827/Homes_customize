@@ -30,7 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -160,25 +159,25 @@ CORS_ALLOW_HEADERS = (
 ALGORITHM = ALGORITHM
 
 #Redis
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
-
-#LocMemCache
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache' 
-
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache', 
-    } 
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
 }
 
-CACHE_MIDDLEWARE_ALIAS = 'default' # which cache alias to use 
-CACHE_MIDDLEWARE_SECONDS = 600 # number of seconds to cache a page for (TTL) 
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
+#LocMemCache
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache' 
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache', 
+#     } 
+# }
+
+# CACHE_MIDDLEWARE_ALIAS = 'default' # which cache alias to use 
+# CACHE_MIDDLEWARE_SECONDS = 600 # number of seconds to cache a page for (TTL) 
+# CACHE_MIDDLEWARE_KEY_PREFIX = ''
