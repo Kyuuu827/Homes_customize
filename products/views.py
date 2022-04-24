@@ -8,31 +8,26 @@ from django.core.cache    import cache
 from products.models      import Menu, ProductGroup
 
 
-'''
-class MenuListView(View):
-    def get(self, request):
-        start = time.time()
+# class MenuListView(View):
+#     def get(self, request):
+#         menus = Menu.objects.prefetch_related('category_set', 'category_set__subcategory_set').all()
 
-        #menus = Menu.objects.prefetch_related('category_set', 'category_set__subcategory_set').all()
-        menus = Menu.objects.all()
+#         menu_data = [{
+#             'menu_id'   : menu.id,
+#             'menu_name' : menu.name,
+#             'image_url' : menu.image_url,
+#             'categories'  : [{
+#                 'id'   : category.id,
+#                 'name' : category.name,
+#                 'subcategories'   : [{
+#                     'id'   : subcategory.id,
+#                     'name' : subcategory.name,
+#                 } for subcategory in category.subcategory_set.all()],
+#             } for category in menu.category_set.all()],
+#         } for menu in menus]
 
-        menu_data = [{
-            'menu_id'   : menu.id,
-            'menu_name' : menu.name,
-            'image_url' : menu.image_url,
-            'categories'  : [{
-                'id'   : category.id,
-                'name' : category.name,
-                'subcategories'   : [{
-                    'id'   : subcategory.id,
-                    'name' : subcategory.name,
-                } for subcategory in category.subcategory_set.all()],
-            } for category in menu.category_set.all()],
-        } for menu in menus]
-        print("걸린 시간: ", time.time() - start)
+#         return JsonResponse({'menus':menu_data}, status = 200)
 
-        return JsonResponse({'menus':menu_data}, status = 200)
-'''
 
 class MenuListView(View):
     def get(self, request):
