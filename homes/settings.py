@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'carts',
+
+    # SWAGGER
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -181,3 +184,10 @@ CACHES = {
 # CACHE_MIDDLEWARE_ALIAS = 'default' # which cache alias to use 
 # CACHE_MIDDLEWARE_SECONDS = 600 # number of seconds to cache a page for (TTL) 
 # CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Homes_cutomize',
+    'DESCRIPTION': 'Homes_cutomize 프로젝트',
+    'CONTACT': {'name': '이찬규', 'email': 'lck0827@gmail.com'},
+    'VERSION': '1.0.0',
+}
